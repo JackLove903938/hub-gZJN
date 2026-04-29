@@ -1,0 +1,226 @@
+# coding:utf8
+import os
+import torch
+import torch.nn as nn
+import numpy as np
+import random
+# import matplotlib.pyplot as plt
+
+"""
+
+基于pytorch框架编写模型训练
+实现一个自行构造的找规律(机器学习)任务
+五维判断：x是一个5维向量，向量中哪个标量最大就输出哪一维下标
+
+对一个任意包含“你”字的五个字的文本，“你”在第几位，就属于第几类。
+"""
+
+
+CHARACTERS = [
+    "爱", "心", "光", "梦", "情", "暖", "美", "笑",
+    "真", "好", "棒", "亮", "甜", "香", "柔", "纯",
+    "善", "乐", "福", "喜", "安", "宁", "静", "雅",
+    "诗", "画", "歌", "舞", "花", "月", "星", "云",
+    "风", "雨", "雪", "春", "夏", "秋", "冬", "日",
+    "山", "水", "海", "河", "湖", "树", "草", "叶",
+    "鸟", "鱼", "虫", "兽", "人", "天", "地", "火"
+]
+
+VOCAB ={"<PAD>": 0, "<UNK>": 1}
+for i, char in enumerate(CHARACTERS):
+    VOCAB[char] = i + 2
+VOCAB["你"] = len(VOCAB)  # 确保"你"字在词汇表中
+VOCAB_SIZE = len(VOCAB)
+
+def generate_five_char_text_with_ni():
+    """
+    生成一个包含"你"字的五个字文本
+    :return: (text, label) 文本和"你"字的位置(1-5)
+    """
+    # 随机选择"你"字的位置（1-5）
+    ni_pos = random.randint(1, 5)
+    # 生成文本
+    chars = []
+    for i in range(5):
+        if i == ni_pos - 1:
+            chars.append("你")
+        else:
+            chars.append(random.choice(CHARACTERS))
+    text = "".join(chars)
+    return text, ni_pos
+def text_to_ids(text):
+    # 将文本转换为词ID序列
+    # :param text: 五字文本
+    # :return: 词ID列表
+    ids = []
+    for char in text:
+        ids.append(VOCAB.get(char, VOCAB["<UNK>"]))
+    return ids
+
+class MultiClassficationModel(nn.Module):
+    def __init__(self,vocab_size, embed_dim=64, hidden_dim=64, model_type="rnn"):
+        super(MultiClassficationModel, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+        if model_type  =="rnn":
+            self.rnn = nn.RNN(embed_dim, hidden_dim, batch_first=True)
+        elif model_type  =="lstm":
+            self.rnn = nn.LSTM(embed_dim, hidden_dim, batch_first=True)
+        else:
+            raise ValueError(f"未知模型类型：{model_type}")
+        self.linear = nn.Linear(hidden_dim, 5)  # 线性层
+        self.loss = nn.functional.cross_entropy  # loss函数采用交叉熵损失 nn.CrossEntropyLoss()
+
+    # 当输入真实标签，返回loss值；无真实标签，返回预测值
+    def forward(self, x, y=None):
+        # 1. 词嵌入层：将词ID转换为词向量
+        # 输入形状: (batch_size, seq_len)
+        # 输出形状: (batch_size, seq_len, embed_dim)
+        x = self.embedding(x)  
+        # 2. RNN/LSTM层：处理序列数据，提取上下文特征
+        # 输入形状: (batch_size, seq_len, embed_dim)
+        # 输出形状: (batch_size, seq_len, hidden_dim)
+        # 返回值: (output, hidden_state)，我们只关心output，用_忽略hidden_state
+        x, _ = self.rnn(x)  
+        # 3. 提取最后一个时间步的输出
+        # 对于文本分类任务，通常取最后一个时间步的隐藏状态作为整个序列的特征表示
+        # 输入形状: (batch_size, seq_len, hidden_dim)
+        # 输出形状: (batch_size, hidden_dim
+        x = x[:, -1, :]  
+        # 4. 全连接层：将隐藏状态映射到类别空间
+        # 输入形状: (batch_size, hidden_dim)
+        # 输出形状: (batch_size, num_classes)，这里num_classes=5
+        y_pred = self.linear(x)  
+        if y is not None:
+            # 有标签时，计算交叉熵损失
+            return self.loss(y_pred, y)  # 预测值和真实值计算损失
+        else:
+            # 无标签时，返回softmax概率分布
+            return torch.softmax(y_pred, dim=1)  # 输出预测结果
+
+# 随机生成一批样本
+# 正负样本均匀生成
+def build_dataset(total_sample_num):
+    """
+    生成训练/测试数据集
+    :param total_sample_num: 样本数量
+    :return: (X, Y) 特征和标签张量
+    """
+    X = []
+    Y = []
+    for i in range(total_sample_num):
+        text, ni_pos = generate_five_char_text_with_ni()
+        X.append(text_to_ids(text))
+        Y.append(ni_pos -1)
+    return torch.LongTensor(X), torch.LongTensor(Y)
+    
+
+def build_ni_dataset(total_sample_num):
+    """
+    生成一批包含"你"字的五个字文本样本
+    :param total_sample_num: 样本总数
+    :return: 包含样本的张量
+    """
+    texts = []
+    labels = []
+    for i in range(total_sample_num):
+        text = generate_five_char_text_with_ni()
+        texts.append(text)
+        labels.append(1)
+    return texts, labels
+
+
+# 测试代码
+# 用来测试每轮模型的准确率
+def evaluate(model, test_x, test_y):
+    model.eval()
+    correct, wrong = 0, 0
+    with torch.no_grad():
+        y_pred = model(test_x)
+        for y_p, y_t in zip(y_pred, test_y):
+            if torch.argmax(y_p) == int(y_t):
+                correct += 1
+            else:
+                wrong += 1
+
+    print("正确预测个数：%d, 正确率：%f" % (correct, correct / (correct + wrong)))
+    return correct / (correct + wrong)
+
+
+def main():
+    # 配置参数
+    epoch_num = 30
+    batch_size = 32
+    train_sample = 5000
+    test_sample = 500
+    embed_dim = 64
+    hidden_dim = 64
+    learning_rate = 0.001
+    #生成数据集
+    train_x, train_y = build_dataset(train_sample)
+    test_x, test_y = build_dataset(test_sample)
+    #创建模型
+    model = MultiClassficationModel(VOCAB_SIZE, embed_dim, hidden_dim,model_type="lstm")
+    #优化器
+    optim = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    #训练过程
+    for epoch in range(epoch_num):
+        model.train()
+        watch_loss = []
+        for batch_index in range(train_sample // batch_size):
+            x = train_x[batch_index * batch_size: (batch_index + 1) * batch_size]
+            y = train_y[batch_index * batch_size: (batch_index + 1) * batch_size]
+            loss = model(x, y)  # 计算loss model.forward(x, y)
+            loss.backward()  # 计算梯度
+            optim.step()  # 更新权重
+            optim.zero_grad()  # 梯度归零
+            watch_loss.append(loss.item())
+        avg_loss = np.mean(watch_loss)
+        print(f"\n第{epoch+1}轮训练完成")
+        print(f"平均loss: {avg_loss:.4f}")
+        
+        # 每5轮评估一次
+        if (epoch + 1) % 5 == 0:
+            print("测试集评估:")
+            evaluate(model, test_x, test_y)
+    
+    # 最终评估
+    print("\n最终评估:")
+    final_acc = evaluate(model, test_x, test_y)
+    
+    # 保存模型
+    torch.save(model.state_dict(), "model.pt")
+    
+    return final_acc
+
+# 使用训练好的模型做预测
+def predict(model_path, input_vec):
+    model = MultiClassficationModel(VOCAB_SIZE, embed_dim=64, hidden_dim=64,model_type="lstm")
+    model.load_state_dict(torch.load(model_path))  # 加载训练好的权重
+    model.eval()  # 测试模式
+     # 将文本转换为词ID
+    X = []
+    for text in input_vec:
+        ids = text_to_ids(text)
+        X.append(ids)
+    X = torch.LongTensor(X)
+    
+    with torch.no_grad():
+        y_pred = model(X)
+    
+    for text, pred in zip(input_vec, y_pred):
+        pos = torch.argmax(pred).item() + 1  # 转换回1-5
+        prob = pred[torch.argmax(pred)].item()
+        print(f"输入: {text}, 预测'你'在第{pos}位, 概率: {prob:.4f}")
+
+if __name__ == "__main__":
+    main()
+   # 测试预测
+    print("\n测试预测功能:")
+    test_texts = [
+        "你是我的光",
+        "我爱你中国",
+        "心中只有你",
+        "阳光照耀你",
+        "你好每一天"
+    ]
+    predict("model.pt", test_texts)
