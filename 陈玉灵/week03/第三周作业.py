@@ -30,6 +30,7 @@ CHINESE_CHARS = [chr(i) for i in range(CHINESE_CHAR_START, CHINESE_CHAR_START + 
 OTHER_CHINESE_CHARS = [char for char in CHINESE_CHARS if char != "你"]
 CHAR2IDX = {char: idx + 1 for idx, char in enumerate(OTHER_CHINESE_CHARS)}
 CHAR2IDX["你"] = 2  # “你”字的索引为2，0为pad，1为unk
+print(f'词表内容示例: {list(CHAR2IDX.items())[:10]}')
 IDX2CHAR = {idx: char for char, idx in CHAR2IDX.items()}
 
 # ─── 1. 数据生成 ────────────────────────────────────────────
