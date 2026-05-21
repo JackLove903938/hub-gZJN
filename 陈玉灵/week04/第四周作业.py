@@ -1,17 +1,58 @@
 """
 用pytorch实现一个transformer层
 """
+import math
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 import os
+
+# 自定义多头自注意力实现
+class MyMultiHeadSelfAttention(nn.Module):
+    def __init__(self, embed_dim, num_heads):
+        super(MyMultiHeadSelfAttention, self).__init__()
+        assert embed_dim % num_heads == 0, "embed_dim must be divisible by num_heads"
+        self.embed_dim = embed_dim
+        self.num_heads = num_heads
+        self.head_dim = embed_dim // num_heads
+        self.qkv_proj = nn.Linear(embed_dim, embed_dim * 3)
+        self.out_proj = nn.Linear(embed_dim, embed_dim)
+
+    def forward(self, x, attn_mask=None):
+        # x: [seq_len, batch, embed_dim]
+        seq_len, batch_size, embed_dim = x.shape
+        qkv = self.qkv_proj(x)  # [seq_len, batch, 3*embed_dim]
+        q, k, v = qkv.chunk(3, dim=-1)
+
+        # reshape to [seq_len, batch, num_heads, head_dim]
+        q = q.view(seq_len, batch_size, self.num_heads, self.head_dim)
+        k = k.view(seq_len, batch_size, self.num_heads, self.head_dim)
+        v = v.view(seq_len, batch_size, self.num_heads, self.head_dim)
+
+        # permute to [batch, num_heads, seq_len, head_dim]
+        q = q.permute(1, 2, 0, 3)
+        k = k.permute(1, 2, 0, 3)
+        v = v.permute(1, 2, 0, 3)
+
+        # scaled dot-product attention
+        scores = torch.matmul(q, k.transpose(-2, -1)) / math.sqrt(self.head_dim)
+        if attn_mask is not None:
+            scores = scores.masked_fill(attn_mask == 0, float('-inf'))
+        attn = F.softmax(scores, dim=-1)
+
+        out = torch.matmul(attn, v)  # [batch, num_heads, seq_len, head_dim]
+        out = out.permute(2, 0, 1, 3).contiguous().view(seq_len, batch_size, embed_dim)
+        return self.out_proj(out)
+
 
 # 定义自实现的Transformer层，包括多头自注意力和前馈网络
 class MyTransformerLayer(nn.Module):
     def __init__(self, embed_dim, num_heads, ff_dim):
         super(MyTransformerLayer, self).__init__()
-        self.self_attn = nn.MultiheadAttention(embed_dim, num_heads)
+        self.self_attn = MyMultiHeadSelfAttention(embed_dim, num_heads)
         self.ffn = nn.Sequential(
             nn.Linear(embed_dim, ff_dim),
             nn.ReLU(),
@@ -21,8 +62,8 @@ class MyTransformerLayer(nn.Module):
         self.norm2 = nn.LayerNorm(embed_dim)
 
     def forward(self, x):
-        # MultiheadAttention要求输入形状为 (seq_len, batch, embed_dim)
-        attn_output, _ = self.self_attn(x, x, x)
+        # 自定义多头自注意力输入形状为 (seq_len, batch, embed_dim)
+        attn_output = self.self_attn(x)
         x = self.norm1(x + attn_output)
         ffn_output = self.ffn(x)
         x = self.norm2(x + ffn_output)
