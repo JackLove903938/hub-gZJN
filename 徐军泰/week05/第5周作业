@@ -1,0 +1,262 @@
+"""
+字符级 Transformer 语言模型（ causal mask 自回归预训练）
+支持：贪心采样 / top-k / top-p / temperature 生成
+"""
+
+import math
+import argparse
+import glob
+import random
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import Dataset, DataLoader
+
+# 在代码最开头加上这几句
+torch.set_num_threads(16)  # 直接设置为你的总线程数
+torch.set_num_interop_threads(4)
+torch.backends.mkldnn.enabled = True
+torch.backends.openmp.enabled = True
+
+
+# ─────────────────────────── 数据 ───────────────────────────
+def load_corpus(pattern="*.txt"):
+    texts = []
+    for path in glob.glob(pattern):
+        with open(path, encoding="utf-8", errors="ignore") as f:
+            texts.append(f.read())
+    return "".join(texts)
+
+def build_vocab(text):
+    chars = sorted(set(text))
+    char2idx = {c:i for i,c in enumerate(chars)}
+    idx2char = {i:c for c,i in char2idx.items()}
+    return char2idx, idx2char
+
+class CharDataset(Dataset):
+    def __init__(self, text, char2idx, seq_len):
+        self.seq_len = seq_len
+        ids = [char2idx[c] for c in text if c in char2idx]
+        self.data = torch.tensor(ids, dtype=torch.long)
+
+    def __len__(self):
+        return max(0, len(self.data) - self.seq_len)
+
+    def __getitem__(self, idx):
+        x = self.data[idx : idx+self.seq_len]
+        y = self.data[idx+1 : idx+self.seq_len+1]
+        return x, y
+
+
+# ─────────────────────────── Transformer 模型 ───────────────────────────
+class PositionalEncoding(nn.Module):
+    def __init__(self, dim, max_len=2048):
+        super().__init__()
+        pe = torch.zeros(max_len, dim)  # 创建一个空表格，用来存位置编码。位置编码的全0矩阵，形状是 (max_len, dim)，每一行对应一个位置，每一列对应一个维度
+        pos = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)   # torch.arange(0, max_len) 生成一个从0到max_len-1的整数序列，如 [0, 1, 2, ..., max_len-1]，表示位置索引；unsqueeze(1) 将其形状从 (max_len,) 变为 (max_len, 1)，这样就可以和下面的div进行广播运算。
+        '''
+        [0,1,2,3,4]
+        →
+        [[0],
+        [1],
+        [2],
+        [3],
+        [4]]
+        '''
+        
+        div = torch.exp(torch.arange(0, dim, 2).float() * (-math.log(10000.0) / dim))
+        pe[:,0::2] = torch.sin(pos * div)
+        pe[:,1::2] = torch.cos(pos * div)
+        self.register_buffer('pe', pe.unsqueeze(0))
+
+    def forward(self, x):
+        return x + self.pe[:, :x.size(1)]
+
+
+class TransformerLM(nn.Module):
+    def __init__(self, vocab_size, embed_dim, num_heads, hidden_dim, num_layers, dropout=0.1):
+        super().__init__()
+        self.emb = nn.Embedding(vocab_size, embed_dim)
+        self.pos_enc = PositionalEncoding(embed_dim)
+        self.drop = nn.Dropout(dropout)
+
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=embed_dim,
+            nhead=num_heads,
+            dim_feedforward=hidden_dim,
+            dropout=dropout,
+            batch_first=True,
+            activation='gelu'
+        )
+        self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+        self.fc = nn.Linear(embed_dim, vocab_size)
+
+    def forward(self, x):
+        B, T = x.shape
+        # 下三角 mask（核心！禁止看到未来）
+        mask = torch.tril(torch.ones(T, T, device=x.device)).bool() == False
+
+        x = self.emb(x)
+        x = self.pos_enc(x)
+        x = self.drop(x)
+        x = self.transformer(x, mask=mask)
+        logits = self.fc(x)
+        return logits
+
+
+# ─────────────────────────── 采样策略（生成用） ───────────────────────────
+def sample_next_token(logits, method="greedy", top_k=5, top_p=0.9, temperature=1.0):
+    logits = logits / temperature
+    probs = F.softmax(logits, dim=-1)
+
+    if method == "greedy":
+        return torch.argmax(probs, dim=-1)
+
+    if method == "top_k":
+        v, idx = probs.topk(top_k)
+        next_idx = torch.multinomial(v, num_samples=1)
+        return idx.gather(-1, next_idx).squeeze(-1)
+
+    if method == "top_p":
+        sorted_probs, sorted_idx = probs.sort(descending=True)
+        cumsum = sorted_probs.cumsum(-1)
+        mask = cumsum - sorted_probs > top_p
+        sorted_probs[mask] = 0
+        sorted_probs /= sorted_probs.sum(-1, keepdim=True)
+        res = torch.multinomial(sorted_probs, num_samples=1)
+        return sorted_idx.gather(-1, res).squeeze(-1)
+
+    return torch.multinomial(probs, num_samples=1).squeeze(-1)
+
+
+# ─────────────────────────── 生成函数 ───────────────────────────
+@torch.no_grad()
+def generate(
+    model, char2idx, idx2char,
+    prompt="", max_len=128,
+    method="top_p", device="cpu"
+):
+    model.eval()
+    ids = [char2idx[c] for c in prompt if c in char2idx]
+    input_ids = torch.tensor([ids], dtype=torch.long).to(device)
+
+    for _ in range(max_len - len(ids)):
+        logits = model(input_ids)
+        next_id = sample_next_token(logits[:, -1], method=method)
+        input_ids = torch.cat([input_ids, next_id.unsqueeze(0)], dim=1)
+        ids.append(next_id.item())
+
+    return ''.join([idx2char[i] for i in ids])
+
+
+# ─────────────────────────── 训练 ───────────────────────────
+def run_epoch(model, loader, criterion, optimizer, device, train=True):
+    model.train(train)
+    total_loss = 0.0
+    total_tokens = 0
+
+    for x,y in loader:
+        x,y = x.to(device), y.to(device)
+        logits = model(x)
+        loss = criterion(logits.reshape(-1, logits.size(-1)), y.reshape(-1))
+
+        if train:
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+        total_loss += loss.item() * y.numel()
+        total_tokens += y.numel()
+
+    avg_loss = total_loss / total_tokens
+    ppl = math.exp(avg_loss)
+    return avg_loss, ppl
+
+
+# ─────────────────────────── 主函数 ───────────────────────────
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--epochs",     type=int, default=5)
+    parser.add_argument("--seq_len",    type=int, default=64)
+    parser.add_argument("--batch_size", type=int, default=16)
+    parser.add_argument("--embed_dim",  type=int, default=64)
+    parser.add_argument("--num_heads",  type=int, default=4)
+    parser.add_argument("--hidden_dim", type=int, default=128)
+    parser.add_argument("--num_layers", type=int, default=2)
+    parser.add_argument("--lr",         type=float, default=1e-4)
+    parser.add_argument("--dropout",    type=float, default=0.1)
+    parser.add_argument("--save",       default="transformer_lm.pt")
+    args = parser.parse_args()
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"✅ 使用设备: {device} | Transformer 模型")
+
+    # 数据
+    text = load_corpus()
+    char2idx, idx2char = build_vocab(text)
+    vocab_size = len(char2idx)
+    print(f"语料长度: {len(text):,} | 词表大小: {vocab_size}")
+
+    # 划分
+    lines = text.splitlines()
+    random.shuffle(lines)
+    split = int(len(lines)*0.95)
+    train_text = "\n".join(lines[:split])
+    val_text = "\n".join(lines[split:])
+
+    # 加载器
+    train_ds = CharDataset(train_text, char2idx, args.seq_len)
+    val_ds = CharDataset(val_text, char2idx, args.seq_len)
+    train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, drop_last=True)
+    val_loader = DataLoader(val_ds, batch_size=args.batch_size, shuffle=True, drop_last=True)
+
+    # 模型
+    model = TransformerLM(
+        vocab_size=vocab_size,
+        embed_dim=args.embed_dim,
+        num_heads=args.num_heads,
+        hidden_dim=args.hidden_dim,
+        num_layers=args.num_layers,
+        dropout=args.dropout
+    ).to(device)
+
+    total_params = sum(p.numel() for p in model.parameters())
+    print(f"模型参数量: {total_params:,}")
+
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
+    best_ppl = float("inf")
+
+    print(f"\n{'Epoch':>5} {'Train Loss':>10} {'Train PPL':>10} {'Val Loss':>10} {'Val PPL':>10}")
+    print("-"*65)
+
+    for epoch in range(1, args.epochs+1):
+        tr_loss, tr_ppl = run_epoch(model, train_loader, criterion, optimizer, device, train=True)
+        with torch.no_grad():
+            va_loss, va_ppl = run_epoch(model, val_loader, criterion, optimizer, device, train=False)
+
+        if va_ppl < best_ppl:
+            best_ppl = va_ppl
+            torch.save({
+                "model": model.state_dict(),
+                "char2idx": char2idx,
+                "idx2char": idx2char,
+                "args": vars(args)
+            }, args.save)
+
+        mark = "*" if va_ppl == best_ppl else ""
+        print(f"{epoch:>5} {tr_loss:>10.3f} {tr_ppl:>10.2f} {va_loss:>10.3f} {va_ppl:>10.2f} {mark}")
+
+    # 生成测试
+    print("\n" + "="*50)
+    print("📝 生成测试（4种采样策略）")
+    print("="*50)
+    for method in ["greedy", "top_k", "top_p"]:
+        out = generate(model, char2idx, idx2char, prompt="今天", max_len=128, method=method, device=device)
+        print(f"\n【{method:8s}】\n{out}")
+
+    print(f"\n训练完成！最佳 PPL: {best_ppl:.2f} | 模型已保存: {args.save}")
+
+
+if __name__ == "__main__":
+    main()
