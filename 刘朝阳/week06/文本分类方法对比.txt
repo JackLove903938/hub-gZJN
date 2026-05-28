@@ -1,0 +1,28 @@
+| 对比维度 | BERT Fine-tune | LLM Zero-shot | LLM SFT (LoRA) |
+|----------|---------------|---------------|----------------|
+| 训练方式 | 微调 | 零样本推理（无训练） | 生成式指令微调 |
+| 数据需求 | 需大量标注数据（53K） | 无需标注数据 | 需少量标注数据（5K） |
+| 可训练参数 | 全量102.3M(分类头11.5K) | 0 | 1.08M（0.22%） |
+| 训练成本 | 20min(GPU RTX3050) | 0 | 15min(GPU RTX3050) |
+| 基础模型 | bert-base-chinese(110M) | Qwen2-0.5B(500M) | Qwen2-0.5B(500M) |
+| 输出方式 | 直接输出logits（分类头） | 生成文本后解析(tokenizer.batch_decode) | 生成文本后解析(tokenizer.batch_decode) |
+| 核心技术 | cls/mean/max池化 | Prompt Engineering（提示词工程） | LoRA + Loss Masking(prompt部分不计算loss) |
+| Accuracy | 52% | 37.50% | 52.50% |
+| Macro F1 | 0.546 | 0.35 | 0.525 |
+| 无法解析率 | 0 | 30% | 5% |
+| 数据不均衡处理 | 加权CrossEntropyLoss | 不适用（无训练） | 未使用（依赖大模型泛化） |
+| 不均衡实现方式 | compute_class_weight("balanced") | 未使用 | 标准 CE Loss |
+| 不均衡效果 | 证券类Recall提升明显 | 未使用 | 依赖预训练知识 |
+| 大量标注数据 | ✅ 首选 | ❌ | ✅ |
+| 零标注场景 | ❌ | ✅ 首选 | ❌ |
+| 少量标注数据 | ⚠️ 效果受限 | ⚠️ 精度低 | ✅ 首选 |
+| 推理延迟 | ✅ 最快 | ❌ 最慢 | ⚠️ 中等 |
+
+适用场景:
+- BERT Fine-tune:  标注数据充足、追求最高精度、推理延迟敏感的生产环境
+- LLM Zero-shot:   无标注数据、快速验证、冷启动场景，或标签体系频繁变化
+- LLM SFT (LoRA):  少量标注数据、需要比Zero-shot更高精度、资源受限无法全量微调
+
+总结:
+标注数据充足时 BERT Fine-tune 精度最优；数据为零时 Zero-shot 是唯一选择；
+LoRA 是二者间的性价比最优解——用少量数据+极少参数即可逼近全量微调效果。
