@@ -1,0 +1,23 @@
+三种文本分类方法	BERT  fine-tune	                              LLM Zero-shot	                    LLM SFT（LoRA）
+训练范式差异			 
+训练方式	             微调	                                         零样本推理（无训练）	              生成式指令微调
+数据需求	        需大量标注数据（53K）	无需标注数据	           需少量标注数据（5K）
+可训练参数	      全量 102.3M(f分头类11.5K)	                       0	                              1.08M（0.22%）
+训练成本	        20 min(GPU RTX3050)	                             0	                              15 min (GPU RTX3050)
+模型架构差异			
+基础模型	        bert-base-chinese(110M)	                     Qwen2-0.5B（500M）	                  Qwen2-0.5B（500M）
+输出方式	        直接输出 logits（分类头）	               生成文本后解析(tokenizer.batch_decode)	  生成文本后解析(tokenizer.batch_decode)
+核心技术	       （cls/mean/max）	                         Prompt Engineering（提示词工程）	      LoRA + Loss Masking(prompt 部分不计算 loss)
+性能指标			
+Accuracy（正确预测数 / 总数）	52%	                                   37.50%	                           52.50%
+Macro F1（各类 F1 的算术平均）	0.546	                                 0.35	                              0.525
+无法解析率 	                   0	                                   30%	                                5%
+数据不均衡处理差异			
+处理方法	              加权 CrossEntropyLoss	                    不适用（无训练）	            未使用（依赖大模型泛化）
+实现方式	          compute_class_weight("balanced")	             未使用	                           标准 CE Loss
+效果	                证券类 Recall 提升明显	                     未使用	                          依赖预训练知识
+适用场景差异			
+大量标注数据	                ✅ 首选                             	❌	                                ✅
+零标注场景	                  ❌	                                ✅ 首选	                              ❌
+少量标注数据	                ⚠️ 效果受限	                        ⚠️精度低	                            ✅ 首选
+推理延迟	                    ✅ 最快	                             ❌ 最慢	                            ⚠️中等
