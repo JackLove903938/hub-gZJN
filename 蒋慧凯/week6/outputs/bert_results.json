@@ -1,0 +1,6 @@
+{
+  "method": "BERT Fine-tune",
+  "accuracy": 0.4545,
+  "macro_f1": 0.4161,
+  "per_sample_time": 0.005
+}
