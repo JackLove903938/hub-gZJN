@@ -1,0 +1,11 @@
+# 序列标注（peoples_daily NER）作业依赖
+# 安装方式: pip install -r requirements.txt
+
+torch>=2.6.0
+transformers>=5.5.0
+seqeval>=1.2.2
+pytorch-crf>=0.7.2
+matplotlib>=3.10.0
+numpy>=1.26.0
+tqdm>=4.66.0
+openai>=1.0.0
