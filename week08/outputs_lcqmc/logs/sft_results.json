@@ -1,0 +1,1409 @@
+{
+  "accuracy": 0.855,
+  "f1_weighted": 0.8550616265406634,
+  "f1_pos": 0.8542713567839196,
+  "n_samples": 200,
+  "parse_fail": 0,
+  "detail": [
+    {
+      "sentence1": "天津购物去哪里？",
+      "sentence2": "天津哪里卖购物卡",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "梦幻西游序列号有什么用",
+      "sentence2": "梦幻西游什么序列号最好",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "孕妇钙片吃什么牌子的好",
+      "sentence2": "孕妇吃什么牌子的钙片好",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "北京哪个大商场有卖韩版鞋子的哦？",
+      "sentence2": "北京比较有名的大商场有哪些?",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "电脑用什么解压软件最好？",
+      "sentence2": "手机什么解压软件最好用",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "洛克王国圣诞球怎么用",
+      "sentence2": "洛克王国圣诞帽怎么拼",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "哪种球类运动球的速度最快",
+      "sentence2": "体育中哪种球类的速度最快?",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "冬季到台北来看雨歌词",
+      "sentence2": "冬季到台北来看雨的歌词",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "同次奥什么意思",
+      "sentence2": "奥是什么意思",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "北京免费的公园有哪些？",
+      "sentence2": "北京有哪些免费的公园啊?",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "男主角是龙的小说有哪些",
+      "sentence2": "小说男主角姓甄的都有哪些",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "嘭嘭是什么动物声音",
+      "sentence2": "什么动物没声音",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "图片中的小狗是什么品种？",
+      "sentence2": "这是啥狗呢，像金毛的串串吗",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "领导说我脾气不好，什么意思？",
+      "sentence2": "领导说我脾气太大了，什么意思？",
+      "label": 1,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "干的桂圆一斤多少钱？",
+      "sentence2": "福建建阳目前桂圆干多少钱一包",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "肾病综合症吃什么盐",
+      "sentence2": "肾病综合症吃什么药",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "女人的乳头会被男人吸大吗",
+      "sentence2": "男人可以插女人的肛门吗?",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "匆匆那年乔燃结局是什么",
+      "sentence2": "匆匆那年的结局是什么",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "游民星空怎么下载游戏？",
+      "sentence2": "游民星空怎么下载游戏啊",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "成语玩命猜这个答案是什么？",
+      "sentence2": "猜歌王的答案是什么？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "有没有好听的粤语歌曲，求推荐？",
+      "sentence2": "有没有好听的粤语歌？介绍一下",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "宝宝的两个腿不一样长",
+      "sentence2": "为什么我冬天很热夏天很冷",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "形容高兴的成语是",
+      "sentence2": "形容人不高兴的成语",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "诗句落花时节又逢君中的君指的是",
+      "sentence2": "落花时节又逢君中的君指的是",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "又胖又矮的女生适合什么发型",
+      "sentence2": "又矮又胖的女生适合什么发型",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "什么发型适合脸大的我啊",
+      "sentence2": "这脸型弄什么发型才没那么娘",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "男生说想吃女生是什么意思",
+      "sentence2": "男生想吃女生是什么意思",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "这个韩国模特叫什么名字？附图",
+      "sentence2": "这个韩国模特叫什么名字？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "歌曲这就是爱是哪部电视剧的片尾曲？",
+      "sentence2": "有没有人告沂你是哪部电视剧插曲?",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "贾斯汀比伯的女友几岁拉",
+      "sentence2": "贾斯汀比伯的前任女友",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "疯狂猜成语两个人说哼",
+      "sentence2": "疯狂猜成语两个人都说",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "渠县在哪个省哪个市？",
+      "sentence2": "长春属于哪个省，它是市还是县？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "哪个牌子的六味地黄丸好？",
+      "sentence2": "那个牌子的六味地黄丸好一些",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "嘴唇上火起泡怎么办？",
+      "sentence2": "嘴唇上火起泡怎么办呢？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "吉林农业科技学院哪个专业好",
+      "sentence2": "吉林农业科技学院哪个专业最好",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "求阴影部分的周长和面积",
+      "sentence2": "求阴影部分面积和周长",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "初一到十五有哪些讲究?",
+      "sentence2": "大年初一到十五有哪些讲究",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "女朋友为什么不让我抱",
+      "sentence2": "为什么女朋友不让做",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "京东运动羽绒服价格好贵，有没有便宜一些的？",
+      "sentence2": "京东运动牛仔裤价格好贵，有没有便宜一些的？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "天津河东区有环境好点的餐厅吗？",
+      "sentence2": "天津有什么特色餐厅？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "北京装修哪家公司好？",
+      "sentence2": "北京装修公司哪家好？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "这个图片的出处是哪里？动漫还是漫画？",
+      "sentence2": "这张图片是哪个动漫或漫画里的？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "女人的手和男人的手有什么区别、",
+      "sentence2": "坏女人和好女人有什么区别吗？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "我靠谱你随意了了的。",
+      "sentence2": "在家就能赚钱你会去工作吗？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "助可以加上哪些偏旁组成新字",
+      "sentence2": "眉可以加上哪些偏旁组成新字",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "你妹是什么意思呢？",
+      "sentence2": "你妹的事什么意思",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "侠盗飞车联机秘籍是什么吗?怎么输秘籍啊！",
+      "sentence2": "侠盗飞车5怎么联机啊？最好不要钱",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "伤感的个性签名用啥好",
+      "sentence2": "有什么好的伤感个性签名？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "有没有人知道哪里的泥鳅火锅好吃？",
+      "sentence2": "江苏省哪里做泥鳅最好吃？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "表示好的字有哪些",
+      "sentence2": "表示看的字有哪些",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "舅和外甥女是什么关系",
+      "sentence2": "黄圣依和杨子是什么关系",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "要过年了，摆地摊卖什么好呀？",
+      "sentence2": "要过年了，摆地摊卖什么好呢？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "办理港澳通行证，在哪里办？",
+      "sentence2": "外地人能在北京办港澳通行证吗",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "天天酷跑怎么得高分？",
+      "sentence2": "天天酷跑怎么跑高分？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "我想去旅游应该去什么地方？",
+      "sentence2": "想要去旅游应该要去哪玩最好？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "女孩喜欢摸男孩的哪里",
+      "sentence2": "女孩喜欢什么样的男孩",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "辽宁石油化工大学怎么样？",
+      "sentence2": "辽宁石油化工大学到底怎么样？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "毫不气馁的意思是什么",
+      "sentence2": "毫不气馁的馁什么意思",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "赛尔号和洛克王国哪个好玩？",
+      "sentence2": "洛克王国和赛尔号那个好玩？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "天天飞车什么时候夺宝好",
+      "sentence2": "天天酷跑中怎么样能抽到好东西？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "中国和印度哪个军事实力更强？",
+      "sentence2": "中国和印度哪个军事力量强大？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "这样的电脑算好吗？能玩什么游戏？",
+      "sentence2": "我这电脑配置怎么样？能玩什么游戏？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "去泰国旅游总共要多少钱",
+      "sentence2": "去泰国旅游需要多少钱",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "蛋炒饭怎么样",
+      "sentence2": "蛋炒饭怎么做？",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "谁知道这是啥鞋子？什么牌子的？",
+      "sentence2": "谁知道这衣服是什么牌子的？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "有没有比较好玩的psp游戏要跟地下城差不多的",
+      "sentence2": "有没有好玩的400mb多点的篮球游戏",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "迅雷的智能提速为什么没了",
+      "sentence2": "柯南日语版的怎么没了",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "医学伦理学的案例分析。",
+      "sentence2": "医学伦理学论文：案例分析",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "火影忍者最厉害的是谁？",
+      "sentence2": "火影忍者里的晓组织谁最厉害",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "最近有什么好看的电视剧",
+      "sentence2": "什么电影又好看，又搞笑？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "什么东西是绿色的？",
+      "sentence2": "这绿色的东西是什么啊",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "我想要四张特殊制作的情侣头像",
+      "sentence2": "谁有制作自己非主流QQ头像的软件",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "高分子材料与工程这个专业好不好",
+      "sentence2": "高分子材料与工程专业怎么样？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "信用卡淘宝支付限额么",
+      "sentence2": "怎么改淘宝的账户名？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "我的世界画怎么合成",
+      "sentence2": "我的世界怎样合成",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "2012年的奥运会海在伦敦举办么？",
+      "sentence2": "2012年伦敦奥运会各国入场顺序是怎样的？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "谁喜欢看奔跑吧兄弟？",
+      "sentence2": "奔跑吧兄弟第二季会有哪些人？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "在淘宝开店卖东西可以不交保证金吗？",
+      "sentence2": "淘宝开店不交保证金可以吗？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "北斗星又叫什么",
+      "sentence2": "北斗星像什么？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "山大兴隆山校区到山东大学口腔医院怎么走",
+      "sentence2": "山东大学兴隆山校区到千佛山怎么走",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "烟台南山学院怎么样啊？",
+      "sentence2": "山东烟台南山学院怎么样？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "网上订的火车票可以异地取票吗",
+      "sentence2": "火车票网上订票可以异地取票吗",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "辽宁农业职业技术学院专升本",
+      "sentence2": "辽宁农业职业技术学院地址",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "天天酷跑什么坐骑最好",
+      "sentence2": "天天酷跑用什么挂最好",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "微信漂流瓶怎么无限捞",
+      "sentence2": "微信怎么无限捞漂流瓶",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "初三数学教材书复习题A组答案",
+      "sentence2": "关于北师大版初三数学教材下册",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "万能空调遥控器真的万能吗?",
+      "sentence2": "万能遥控器直接能遥控其他空调吗",
+      "label": 1,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "在唯品会买到假货怎么办？",
+      "sentence2": "唯品会购买的假货，在哪里投诉",
+      "label": 1,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "时空猎人中兑换码是多少",
+      "sentence2": "时空猎人的兑换码是多少",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "怎么自己制作火车票图片，",
+      "sentence2": "怎样自己制作文字图片？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "上海到郑州有高铁吗？",
+      "sentence2": "郑州到上海有高铁么？",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "天津官网用户名和密码是多少啊？",
+      "sentence2": "手机的锁屏图案有哪些？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "水壶里的水垢如何去除？",
+      "sentence2": "怎样去除水壶里的水垢",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "不知道是什么意思。",
+      "sentence2": "鬼知道是什么意思",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "洛克王国怎么看任务",
+      "sentence2": "洛克王国的任务怎样做",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "我不知道我究竟是不是真的爱他",
+      "sentence2": "我不知道自己是不是真的爱他",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "有什么好听的佛教音乐？",
+      "sentence2": "谁知道有什么好听的佛教音乐？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "人最害怕没有什么？",
+      "sentence2": "没有害怕叫什么",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "关于狗和海豚的电影",
+      "sentence2": "关于海豚的电影",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "求助天天爱猜图这张图答案是什么？",
+      "sentence2": "天天爱猜图，这关答案是什么？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "能告诉我这是什么成语吗？",
+      "sentence2": "谁能告诉我这是个什么成语",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "济南哪里有卖健身器材的？",
+      "sentence2": "济南哪里有健身俱乐部，或者舞蹈俱乐部？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "请问这种是什么字体？谢谢，我很着急！",
+      "sentence2": "请问这种是什么字体？?急求啊，急急急急",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "判断题:诚实守信是职业道德的内容之一",
+      "sentence2": "为什么诚实守信是公民道德建设的重点",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "中国周边安全形势分析。论答题。",
+      "sentence2": "论述题阐述和分析当前中国周边安全形势及特点",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "地瓜怎么吃",
+      "sentence2": "怎么煮地瓜",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "什么用来形容解放军,环卫工人和记者呢？",
+      "sentence2": "人们把解放军环卫工人和记者比喻成什么",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "三星手机怎么移动图标",
+      "sentence2": "怎样解三星手机屏幕锁",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "著名诗人李白是哪个朝代的人？",
+      "sentence2": "李白是哪个朝代的人？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "开个家居饰品店挣钱吗",
+      "sentence2": "开个木槿花家居饰品怎么样?",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "飞车挂怎样下载",
+      "sentence2": "怎样下载飞车啊",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "找赵本山的一部小品名",
+      "sentence2": "求赵本山一部小品的名字",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "重庆化工职业学院好么？",
+      "sentence2": "重庆化工职业学院可以升本吗？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "这个女优叫什么名字？请大神回答",
+      "sentence2": "这个女优叫什么名字？大神解答下",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "天天飞车什么车最好",
+      "sentence2": "天天飞车什么车最好用",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "小桥流水人家前面一句是什么",
+      "sentence2": "小桥流水人家的前一句",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "欲钱买懂得爱的动物，岀什么生肖",
+      "sentence2": "一句话:欲钱买懂得爱的动物，是什么生肖",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "谁能帮我注册韩服跑跑卡丁车啊",
+      "sentence2": "韩服跑跑卡丁车好心人帮我注册个号!",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "犯太岁是什么意思？",
+      "sentence2": "害太岁是什么意思",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "全世界有多少种球类比赛",
+      "sentence2": "全世界一共有多少种球类竞技活动?",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "什么牌子的钱包好",
+      "sentence2": "这个钱包是什么牌子的",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "脸上的痣代表什么意思",
+      "sentence2": "脸上有痣代表什么意思",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "求仙三配乐《你是我一首唱不完的歌》MP3连接地址",
+      "sentence2": "求《你是我一首唱不完的歌》的歌曲连接",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "这是不是非洲大蜗牛？",
+      "sentence2": "非洲大蜗牛有多可怕。",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "图片中的小狗是什么品种？",
+      "sentence2": "图片里的小狗是什么品种",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "微信怎么删除收藏的表情",
+      "sentence2": "微信收藏的表情怎么删除",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "爱情是从告白开始的全集",
+      "sentence2": "爱情公寓大电影拍不拍",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "谁送我洛克王国雪影娃娃的蛋",
+      "sentence2": "求洛克雪影娃娃的蛋，很急的啊",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "下载电影资源最多的网站",
+      "sentence2": "求一个下载电影资源的网站",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "手机微信内容可以同步到电脑上吗",
+      "sentence2": "电脑微信和手机微信可以同步吗",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "求一部足球动画片的名字",
+      "sentence2": "求一部足球动画的名字?",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "全民飞机大战如何刷钻石",
+      "sentence2": "全民飞机大战的钻石怎么刷",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "现在最流行的手机铃声是什么",
+      "sentence2": "有什么歌适合做手机铃声的？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "什么牌子的面膜粉比较好？",
+      "sentence2": "什么牌子的面膜比较好？",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "聚精会神的神是什么意思？",
+      "sentence2": "聚精会神中的会是什么意思",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "谁知道视频的背景音乐？",
+      "sentence2": "谁知道这个视频背景音乐",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "找一本小说无限流的",
+      "sentence2": "找一本无限小说",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "东北大学考研，钢铁冶金和材料加工哪个好？",
+      "sentence2": "那些学校的钢铁冶金专业比较好？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "十二星座那个星座最好",
+      "sentence2": "十二星座中哪个星座最好？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "江苏海事职业技术学院内部网址",
+      "sentence2": "江苏海事职业技术学院招不招中专学历学生",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "如何理解马克思主义中国化的科学内涵和意义",
+      "sentence2": "如何理解马克思主意中国化的科学内涵和重要意义",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "四川商务职业学院好不好?",
+      "sentence2": "四川商务职业学院怎么样？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "笔记本电脑开机时黑屏怎么办？",
+      "sentence2": "笔记本电脑开机就是黑屏怎么办啊",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "给下列字加偏旁组成新字，再组词",
+      "sentence2": "给下列词加偏旁组成新字，再组词",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "急求个人简历空白表格",
+      "sentence2": "求张个人简历空白表格",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "软妹子什么意思",
+      "sentence2": "撸妹子是什么意思",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "有什么好看的耽美小说有肉的",
+      "sentence2": "有什么好看的末日流小说",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "书的笔画顺序",
+      "sentence2": "非的笔画顺序",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "如何让员工服从你的意见？",
+      "sentence2": "作为一名领导如何让员工服从你",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "为什么贴吧头像显示不了？",
+      "sentence2": "为什么贴吧的头像显示不了",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "中兴手机怎么样？",
+      "sentence2": "怎么拆中兴手机",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "谁有名人尊师的故事啊？",
+      "sentence2": "一些名人的故事，关于靠努力成功的事例",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "逆战怎么卡箱子",
+      "sentence2": "逆战怎么跳箱子？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "吃垃圾食品有什么危害？",
+      "sentence2": "吃奶油有那些危害？是不是垃圾食品？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "天书奇谈怎么培养宠物？",
+      "sentence2": "天书奇谈如何增强宠物",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "您好，请问您的这个新手机号是什么时间购买的呢？比如几几年几月",
+      "sentence2": "您好，这个手机号是您什么时间购买的呢?比如几几年几月",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "江苏哪些大学比较好啊？",
+      "sentence2": "江苏一带`有什么好大学？",
+      "label": 1,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "求天空之城单音简单吉他谱",
+      "sentence2": "天空之城单音版吉他谱",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "一般男人过生日该送什么礼物呢？",
+      "sentence2": "送生日礼物男人，该送什么？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "负数是什么？",
+      "sentence2": "非负数是什么",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "谁知道这个海报是哪部电影的？",
+      "sentence2": "有谁知道这张海报是哪部电影？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "窥视什么意思？",
+      "sentence2": "窥视的视是什么意思",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "光影魔术手如何制作蓝色模糊",
+      "sentence2": "光影魔术手边框黑白图怎么变会彩色",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "银行卡不用又不注销会怎么样",
+      "sentence2": "银行卡不用了，要怎么注销？",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "腾讯的游戏那个最好玩？",
+      "sentence2": "哪个腾讯游戏最好玩？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "我在网上买理财产品安全吗？",
+      "sentence2": "在网上买理财产品安全吗",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "我想给领导送个礼物？送什么好呢？",
+      "sentence2": "给领导送什么礼物才好啊？求大神指点下",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "豆腐和什么炒即好吃又有营养",
+      "sentence2": "什么牌子的方便面干吃最好吃",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "女生染什么颜色的头发好看",
+      "sentence2": "女生染什么颜色头发好看",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "怎么在手机QQ空间查看以前自己收藏的日志",
+      "sentence2": "怎样用电脑查看手机QQ空间收藏的文章",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "爸爸去哪儿被骗了怎么办？",
+      "sentence2": "我被爸爸去哪儿骗了怎么办",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "求一部科幻片",
+      "sentence2": "求一部老的科幻片",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "空调万能遥控器怎么解锁",
+      "sentence2": "万能空调遥控器怎么设置",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "韩国电影爱人的完整版？",
+      "sentence2": "求韩国电影爱人完整版",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "交通事故处理单",
+      "sentence2": "交通事故处理",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "请问，到底还会不会降啊？我该不该现在贷款买房",
+      "sentence2": "现在的房价到底会不会跌？我该不该现在买房？",
+      "label": 1,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "女生现在最流行什么发型",
+      "sentence2": "现在女生最流行什么发型？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "天空飘过五个字那都不是事是什么歌？",
+      "sentence2": "天空飘来五个字，这都不叫事是什么歌",
+      "label": 1,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "形成日地距离适中的原因是什么?",
+      "sentence2": "日地距离是如何测出的？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "什么样的网页游戏最好玩？",
+      "sentence2": "什么网页游戏最好玩？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "加一半减一半猜字谜？",
+      "sentence2": "猜字谜：加一半，减一半。",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "南通文峰大世界三楼有哪些品牌呀",
+      "sentence2": "南通文峰大世界有这些牌子吗？",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "手机删除的短信怎么恢复",
+      "sentence2": "恢复已删除手机的短信",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "我买什么牌子的古筝好",
+      "sentence2": "什么牌子的古筝指甲好",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "手机淘宝订单怎么删除",
+      "sentence2": "手机淘宝怎么删除订单记录",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "奥拉星圣光修罗绝对平民打法",
+      "sentence2": "奥拉星圣光修罗平民打法",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "现在有什么好玩的大型网络游戏么?",
+      "sentence2": "现在最好玩的大型网络游戏是什么?",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "学错专业，现在想改行学考古怎么办？",
+      "sentence2": "我想考古，现在学什么专业比较合适",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "五字情侣网名，带点诗意的。",
+      "sentence2": "四个字诗意情侣网名。跪求",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "女孩说你是她的薄雪草，是什么意思",
+      "sentence2": "有谁知道下面这个短语是什么意思？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "怎么样戒烟",
+      "sentence2": "戒烟贴怎么样？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "为什么我煮的绿豆汤是红色的？",
+      "sentence2": "为什么我的绿豆汤煮出来是是红色的？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "请问这是什么鸟",
+      "sentence2": "请问这是什么鱼",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "带口字偏旁的字有哪些",
+      "sentence2": "平字带偏旁的字有哪些",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "守护甜心第四部什么时候出？",
+      "sentence2": "守护甜心第四季什么时候出？",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "婆婆妈妈是什么生肖蛇",
+      "sentence2": "什么生肖是婆婆妈妈的",
+      "label": 0,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "怎么在电脑上往手机上发短信",
+      "sentence2": "怎么在电脑上给手机发短信?",
+      "label": 1,
+      "pred": 1,
+      "raw_output": "【相似】"
+    },
+    {
+      "sentence1": "影视墙背景什么颜色好看",
+      "sentence2": "软包电视背景什么颜色好看？",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "叉叉助手可以修改部落战争的砖石吗",
+      "sentence2": "烧饼修改器怎么修改部落战争",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    },
+    {
+      "sentence1": "百家姓里有没有姓逍的",
+      "sentence2": "百家姓中有没有姓兔的",
+      "label": 0,
+      "pred": 0,
+      "raw_output": "【不相似】"
+    }
+  ]
+}

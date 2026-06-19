@@ -1,0 +1,20 @@
+[
+  {
+    "accuracy": 0.8645011600928074,
+    "f1": 0.8643385686634838,
+    "threshold": 0.67,
+    "auc": 0.9248254134061638,
+    "label": "BiEncoder\n(CosineEmbeddingLoss)",
+    "color": "#2196F3",
+    "key": "biencoder_cosine",
+    "type": "biencoder"
+  },
+  {
+    "accuracy": 0.8820185614849188,
+    "f1": 0.8820154763307468,
+    "label": "CrossEncoder\n(CrossEntropyLoss)",
+    "color": "#FF9800",
+    "key": "crossencoder",
+    "type": "crossencoder"
+  }
+]
